@@ -5,6 +5,7 @@ const Header = () => {
     const logout = () => {
         alert("hi")
     }
+    
   return (
     <div className="navbar"> 
    <p className="logo">FinTracker</p>
