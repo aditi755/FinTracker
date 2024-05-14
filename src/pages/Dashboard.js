@@ -40,7 +40,7 @@ const Dashboard = () => {
   const onFinish = (values, type) => {
     const newTransaction = {
       type: type,
-      date: moment(values.date).format("YYYY-MM-DD"),
+      date: values.date.format("YYYY-MM-DD"),
       amount: parseFloat(values.amount),
       tag: values.tag,
       name: values.name,
@@ -58,14 +58,19 @@ const Dashboard = () => {
       );
       console.log("Document written with ID: ", docRef.id);
       toast.success("transaction added successfully")
+      let newArr = transactions;
+      newArr.push(transaction);
+      setTransactions(newArr);
+      calculateBalance();
     } catch (e) {
       console.error("Error adding document: ", e);
+      toast.error("couldn't added transactions")
     }
   }
 
   useEffect(() => {
     fetchTransactions()
-  }, [])
+  }, [user])
 
   async function fetchTransactions() {
     setLoading(true)
