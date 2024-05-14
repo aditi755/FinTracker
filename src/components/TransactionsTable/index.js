@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { Table, Input, Select, Radio} from 'antd';
 import search from '../../assets/search.svg'
 import './styles.css'
+import { parse, unparse } from "papaparse";
+import { toast } from "react-toastify"
 const { Option } = Select;
 
-const TransactionsTable = ({ transactions }) => {
+const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
   const [sortKey, setSortKey] = useState('');
@@ -54,42 +56,50 @@ const TransactionsTable = ({ transactions }) => {
     }
   });
 
+
+  function exportToCsv() {
+    const csv = unparse({
+      fields: ["name", "type", "date", "amount", "tag"],
+      data: transactions
+    });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "transactions.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function importFromCsv(event) {
+    event.preventDefault();
+    try {
+      parse(event.target.files[0], {
+        header: true,
+        complete: async function (results) {
+          // Now results.data is an array of objects representing your CSV rows
+          for (const transaction of results.data) {
+            // Write each transaction to Firebase, you can use the addTransaction function here
+            console.log("Transactions", transaction);
+            const newTransaction = {
+              ...transaction,
+              amount: parseInt(transaction.amount),
+            };
+            await addTransaction(newTransaction, true);
+          }
+        },
+      });
+      toast.success("All Transactions Added");
+      fetchTransactions();
+      event.target.files = null;
+    } catch (e) {
+      toast.error(e.message);
+    }
+  }
+
+
   return (
-
-  //   <div>
-  //     <div className="input-flex">
-  //       <img src={search} width="16"/>
-  //   <Input
-  //     value={searchTerm}
-  //     onChange={(e) => setSearchTerm(e.target.value)}
-  //     placeholder="Search by name"
-  //     style={{width: 500}}
-  //   />
-  //   </div>
-
-  //   <Select
-  //     defaultValue=""
-  //     style={{ width: 120, marginLeft: 10 }}
-  //     onChange={(value) => setTypeFilter(value)}
-  //   >
-  //     <Option value="">All</Option>
-  //     <Option value="income">Income</Option>
-  //     <Option value="expense">Expense</Option>
-  //   </Select>
-
-  //   <Radio.Group
-  //           className="input-radio"
-  //           onChange={(e) => setSortKey(e.target.value)}
-  //           value={sortKey}
-  //         >
-  //           <Radio.Button value="">No Sort</Radio.Button>
-  //           <Radio.Button value="date">Sort by Date</Radio.Button>
-  //           <Radio.Button value="amount">Sort by Amount</Radio.Button>
-  //     </Radio.Group>
-
-  //   <Table dataSource={sortedTransactions} columns={columns} />
-  // </div>
-
   <div
       style={{
         width: "96%",
@@ -125,16 +135,6 @@ const TransactionsTable = ({ transactions }) => {
         </Select>
       </div>
 
-      {/* <Select
-        style={{ width: 200, marginRight: 10 }}
-        onChange={(value) => setSelectedTag(value)}
-        placeholder="Filter by tag"
-        allowClear
-      >
-        <Option value="food">Food</Option>
-        <Option value="education">Education</Option>
-        <Option value="office">Office</Option>
-      </Select> */}
       <div className="my-table">
         <div
           style={{
@@ -165,7 +165,7 @@ const TransactionsTable = ({ transactions }) => {
             }}
           >
             <button className="btn" 
-            // onClick={exportToCsv}
+             onClick={exportToCsv}
             >
               Export to CSV
             </button>
@@ -173,7 +173,7 @@ const TransactionsTable = ({ transactions }) => {
               Import from CSV
             </label>
             <input
-              // onChange={importFromCsv}
+              onChange={importFromCsv}
               id="file-csv"
               type="file"
               accept=".csv"

@@ -19,4 +19,8 @@
   .input-flex input:focus {
     outline: none;
   }
+
+  .select-input{
+    width: 10%;
+  }
   
