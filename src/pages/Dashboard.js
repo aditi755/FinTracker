@@ -9,24 +9,18 @@ import Cards from '../components/Cards'
 import {Modal} from 'antd';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import moment from 'moment'
+import TransactionsTable from '../components/TransactionsTable'
 
 const Dashboard = () => {
-  // const transactions = [
-  //   {
-  //     type: 'income',
-  //     amount: 1200,
-  //     tag: 'salary',
-  //     name: 'income 1',
-  //     date: "2023-05-15"
-  //   }
-  // ]
-
   const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(false) 
   const [user] = useAuthState(auth)
   const [isExpenseModalVisible, setIsExpenseModalVisible] = useState(false);
   const [isIncomeModalVisible, setIsIncomeModalVisible] = useState(false);
-
+  const [income, setIncome] = useState(0);
+  const [expenses, setExpenses] = useState(0);
+  const [totalBalance, setTotalBalance] = useState(0);
+  
   const showExpenseModal = () => {
     setIsExpenseModalVisible(true);
   };
@@ -51,10 +45,6 @@ const Dashboard = () => {
       tag: values.tag,
       name: values.name,
     };
-
-    // setTransactions([...transactions, newTransaction]);
-    // setIsExpenseModalVisible(false);
-    // setIsIncomeModalVisible(false);
     addTransaction(newTransaction);
   
   };
@@ -67,6 +57,7 @@ const Dashboard = () => {
         transaction
       );
       console.log("Document written with ID: ", docRef.id);
+      toast.success("transaction added successfully")
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -75,6 +66,7 @@ const Dashboard = () => {
   useEffect(() => {
     fetchTransactions()
   }, [])
+
   async function fetchTransactions() {
     setLoading(true)
     if(user){
@@ -92,18 +84,47 @@ const Dashboard = () => {
     setLoading(false)
   }
 
+
+  const calculateBalance = () => {
+    let incomeTotal = 0;
+    let expensesTotal = 0;
+
+    transactions.forEach((transaction) => {
+      if (transaction.type === "income") {
+        incomeTotal += transaction.amount;
+      } else {
+        expensesTotal += transaction.amount;
+      }
+    });
+
+    setIncome(incomeTotal);
+    setExpenses(expensesTotal);
+    setTotalBalance(incomeTotal - expensesTotal);
+  };
+
+  
+  useEffect(() => {
+    calculateBalance();
+  }, [transactions]);
+
+  // Calculate the initial balance, income, and expenses
+
   return (
     <div>
       <Header />
       {loading ? (<p>Loading...</p>) : ( <><Cards 
       showExpenseModal={showExpenseModal}
       showIncomeModal={showIncomeModal}
+      income={income}
+      expenses={expenses}
+      totalBalance={totalBalance}
       />
 
 <AddExpense isExpenseModalVisible={isExpenseModalVisible} handleExpenseCancel={handleExpenseCancel} onFinish={onFinish}/>
 
 <AddIncome isIncomeModalVisible={isIncomeModalVisible} handleIncomeCancel={handleIncomeCancel} onFinish={onFinish} />
-       
+
+   <TransactionsTable transactions={transactions} />    
     </> 
    )}
   </div>
