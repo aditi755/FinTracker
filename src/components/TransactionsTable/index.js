@@ -80,11 +80,18 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
         complete: async function (results) {
           // Now results.data is an array of objects representing your CSV rows
           for (const transaction of results.data) {
+            // Parse the amount only if it's a valid number
+            const parsedAmount = transaction.amount ? parseFloat(transaction.amount) : null;
+            
+            // Skip transactions with null amount
+            if (parsedAmount === null) {
+              continue;
+            }
+  
             // Write each transaction to Firebase, you can use the addTransaction function here
-            console.log("Transactions", transaction);
             const newTransaction = {
               ...transaction,
-              amount: parseInt(transaction.amount),
+              amount: parsedAmount,
             };
             await addTransaction(newTransaction, true);
           }
@@ -96,8 +103,7 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
     } catch (e) {
       toast.error(e.message);
     }
-  }
-
+  } 
 
   return (
   <div
