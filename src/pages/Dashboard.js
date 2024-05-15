@@ -10,6 +10,8 @@ import {Modal} from 'antd';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import moment from 'moment'
 import TransactionsTable from '../components/TransactionsTable'
+import Chart from '../components/Charts';
+import NoTransactions from '../components/NoTransactions';
 
 const Dashboard = () => {
   const [transactions, setTransactions] = useState([])
@@ -112,8 +114,12 @@ const Dashboard = () => {
     calculateBalance();
   }, [transactions]);
 
-  // Calculate the initial balance, income, and expenses
+  // Calculate the initial balance, income, and 
 
+  const sortedTransactions = transactions.sort((a, b) => { 
+      return new Date(a.date) - new Date(b.date);
+  });
+  
   return (
     <div>
       <Header />
@@ -125,6 +131,7 @@ const Dashboard = () => {
       totalBalance={totalBalance}
       />
 
+{transactions && transactions.length != 0 ? <Chart sortedTransactions={transactions}/> : <NoTransactions />}
 <AddExpense isExpenseModalVisible={isExpenseModalVisible} handleExpenseCancel={handleExpenseCancel} onFinish={onFinish}/>
 
 <AddIncome isIncomeModalVisible={isIncomeModalVisible} handleIncomeCancel={handleIncomeCancel} onFinish={onFinish} />
