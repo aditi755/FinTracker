@@ -15,13 +15,13 @@ const Cards  = ({showExpenseModal, showIncomeModal, income, expenses, totalBalan
      <Card className="my-card" bordered={true}>
      <h2>Total Income</h2>
      <p>${income}</p>
-     <Button text="Reset Balance" blue={true} onClick={showIncomeModal}/>
+     <Button text="Add Income" blue={true} onClick={showIncomeModal}/>
      </Card>
 
      <Card className="my-card" bordered={true}>
      <h2>Total Expenses</h2>
      <p>${expenses}</p>
-     <Button text="Reset Balance" blue={true} onClick={showExpenseModal}/>
+     <Button text="Add Expense" blue={true} onClick={showExpenseModal}/>
      </Card>
 </Row>
 
