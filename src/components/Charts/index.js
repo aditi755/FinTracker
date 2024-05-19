@@ -59,12 +59,12 @@ function Chart({ sortedTransactions }) {
   return (
     <div className="charts-wrapper">
       <div>
-        <h2>Your Analytics</h2>
+        <h2 class="text-center">Your Analytics</h2>
         <Line {...lineConfig} />
       </div>
       <div>
-        <h2>Your Spendings</h2>
-        <Pie {...pieConfig} />
+        <h2 class="text-center" >Your Spendings</h2>
+        <Pie style={{display: 'flex', flexDirection: 'column', backgroundColor: 'pink', marginLeft:"100px"}} {...pieConfig} />
       </div>
     </div>
   );

@@ -29,7 +29,11 @@
 
 @media only screen and (max-width: 430px){
     .my-row{
-        background-color: red;
         flex-direction: column;
+        width: 100%;
+    }
+
+    .my-card{
+        width: 100%;
     }
 }

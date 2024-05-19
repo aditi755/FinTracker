@@ -153,7 +153,7 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
         >
           <h2>My Transactions</h2>
 
-          <Radio.Group
+          <Radio.Group style={{display: "flex"}}
             className="input-radio"
             onChange={(e) => setSortKey(e.target.value)}
             value={sortKey}
@@ -168,6 +168,7 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
               justifyContent: "center",
               gap: "1rem",
               width: "400px",
+              marginLeft: '10px'
             }}
           >
             <button className="btn" 

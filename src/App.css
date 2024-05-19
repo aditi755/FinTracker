@@ -15,3 +15,14 @@
   box-shadow: var(--shadow);
   margin: 2rem;
 }
+
+
+@media (max-width: 768px) {
+  .charts-wrapper {
+    flex-direction: column;
+  }
+
+  .text-center{
+    text-align:center;
+  }
+}
