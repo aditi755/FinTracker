@@ -27,7 +27,7 @@
     margin: 0;
 }
 
-@media (max-width: 768px){
+@media (max-width: 738px){
     .my-row{
         flex-direction: column;
         width: 100%;

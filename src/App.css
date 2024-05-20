@@ -17,9 +17,10 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 738px) {
   .charts-wrapper {
     flex-direction: column;
+    width:100vw;
   }
 
   .text-center{

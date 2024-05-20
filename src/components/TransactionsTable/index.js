@@ -152,8 +152,9 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
           }}
         >
           <h2>My Transactions</h2>
+   <div style={{display: "flex", flexDirection: 'column'}}>Fix
 
-          <Radio.Group style={{display: "flex"}}
+          <Radio.Group style={{display: "flex" }}
             className="input-radio"
             onChange={(e) => setSortKey(e.target.value)}
             value={sortKey}
@@ -162,13 +163,17 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
             <Radio.Button value="date">Sort by Date</Radio.Button>
             <Radio.Button value="amount">Sort by Amount</Radio.Button>
           </Radio.Group>
+
           <div
             style={{
               display: "flex",
               justifyContent: "center",
+              // flexDirection: "row",
               gap: "1rem",
-              width: "400px",
-              marginLeft: '10px'
+              width: "200px",
+              marginLeft: '10px',
+              marginTop: "30px"
+              // backgroundColor: "green"
             }}
           >
             <button className="btn" 
@@ -189,8 +194,10 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
             />
           </div>
         </div>
+{/* fix down line */ }
+        </div>
 
-        <Table columns={columns} dataSource={sortedTransactions} />
+        <Table style={{overflow: "scroll"}} columns={columns} dataSource={sortedTransactions} />
       </div>
     </div>
   );
