@@ -15,9 +15,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* @media only screen and (max-width: 430px){
+@media only screen and (max-width: 738px){
   body{
-margin-left: 20px; 
+box-sizing: border-box;
+
   
   }
-} */
+}

@@ -152,7 +152,7 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
           }}
         >
           <h2>My Transactions</h2>
-   <div style={{display: "flex", flexDirection: 'column'}}>Fix
+   {/* <div style={{display: "flex", flexDirection: 'column'}}>Fix */}
 
           <Radio.Group style={{display: "flex" }}
             className="input-radio"
@@ -170,7 +170,7 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
               justifyContent: "center",
               // flexDirection: "row",
               gap: "1rem",
-              width: "200px",
+              width: "400px",
               marginLeft: '10px',
               marginTop: "30px"
               // backgroundColor: "green"
@@ -194,10 +194,10 @@ const TransactionsTable = ({ transactions, fetchTransactions, addTransaction }) 
             />
           </div>
         </div>
-{/* fix down line */ }
-        </div>
+{/* {/* fix down line
+        </div> */}
 
-        <Table style={{overflow: "scroll"}} columns={columns} dataSource={sortedTransactions} />
+        <Table columns={columns} dataSource={sortedTransactions} />
       </div>
     </div>
   );
