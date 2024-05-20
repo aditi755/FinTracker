@@ -1,6 +1,6 @@
 # Finance Tracker Dashboard 
 
-Welcome to the Finance Tracker Dashboard! This full-stack application utilizes React, Firebase, and Ant Design to provide you with a comprehensive solution for managing your finances effectively. Whether you're an individual or a business, this dashboard offers robust features to track your expenses and income seamlessly.
+Welcome to the Finance Tracker Dashboard! This full-stack application utilizes React, Firebase, and Ant Design to provide you with a comprehensive solution for managing your finances effectively. This dashboard offers robust features to track your expenses and income seamlessly.
 
 ## Features:
 
