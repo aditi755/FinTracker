@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Finance Tracker Dashboard README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Finance Tracker Dashboard! This full-stack application utilizes React, Firebase, and Ant Design to provide you with a comprehensive solution for managing your finances effectively. Whether you're an individual or a business, this dashboard offers robust features to track your expenses and income seamlessly.
 
-## Available Scripts
+## Features:
 
-In the project directory, you can run:
+1. **Authentication**: Securely log in to your account to access your financial data. User authentication is handled through Firebase Authentication, ensuring your information remains protected.
 
-### `npm start`
+2. **Dashboard Overview**: Upon logging in, you'll be greeted with an intuitive dashboard providing an overview of your finances. Track your total expenses, income, and net worth at a glance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **Analytics**: Visualize your financial data with dynamic graphs and charts. The dashboard includes expanding graphs and pie charts to offer insights into your spending habits and income sources.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. **Sortable Table**: Easily organize your transactions with a sortable table. Sort transactions based on amount or date to quickly identify trends or pinpoint specific entries.
 
-### `npm test`
+5. **Import and Export CSV**: Seamlessly import transactions from CSV files or export your data for external analysis. This feature streamlines data management and allows for compatibility with various financial tools.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. **Search Functionality**: Effortlessly search through your transactions using the search feature. Quickly find specific entries by keywords, dates, or transaction types.
 
-### `npm run build`
+## Technologies Used:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React**: The frontend of the application is built using React, providing a fast and responsive user interface.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Firebase**: Firebase is utilized for backend services such as authentication, database storage, and hosting, ensuring scalability and reliability.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Ant Design**: Ant Design components are used for building the UI, offering a sleek and modern design aesthetic while maintaining usability and accessibility.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Demo
+**Dashboard Page**
+![Screenshot (71)](https://github.com/aditi755/FinTracker/assets/107920147/6170f983-94e6-47f2-bad1-2e528068f03f)
+**Analytics Graph**
+![Screenshot (73)](https://github.com/aditi755/FinTracker/assets/107920147/12d1cade-4405-4607-887c-2fdf1837b374)
+![Screenshot (74)](https://github.com/aditi755/FinTracker/assets/107920147/6249d381-803c-4ec0-ae40-3d2f8e591037)
